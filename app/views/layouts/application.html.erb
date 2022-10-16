@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <%= button_to "logout", destroy_user_session_path, method: :delete  if current_user %>
+    <%= link_to "users", users_path if current_user %>
+    <%= link_to "posts", posts_path if current_user %>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
