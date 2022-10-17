@@ -1,5 +1,6 @@
 <ul>
   <% @friend_requests.each do |fr| %>
     <li><%= fr %></li>
+    <%= link_to "Reject", user_friend_request_path(:id => fr.id), data: { turbo_method: :delete } %>
   <% end %>
 </ul>

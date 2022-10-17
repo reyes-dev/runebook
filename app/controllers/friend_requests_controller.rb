@@ -13,6 +13,13 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
+    @friend_request = FriendRequest.find(params[:id])
+    @placeholder_friend_request = FriendRequest.find(FriendRequest.where(receiver_id: @friend_request.sender_id).first.id)
+
+    @friend_request.destroy
+    @placeholder_friend_request.destroy
+
+    redirect_to user_friend_requests_path
   end
 
   private 

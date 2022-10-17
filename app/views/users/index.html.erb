@@ -1,6 +1,6 @@
 <ul>
   <% @users.each do |user| %>
     <li><%= user.email %></li>    
-    <%= link_to "Send Friend Request", friend_requests_path(:friend_request => { :sender_id => current_user.id, :receiver_id => user.id, :received => true }), data: { turbo_method: "post" } %>
+    <%= link_to "Send Friend Request", user_friend_requests_path(user, :friend_request => { :sender_id => current_user.id, :receiver_id => user.id, :received => true }), data: { turbo_method: "post" } %>
   <% end %>
 </ul>

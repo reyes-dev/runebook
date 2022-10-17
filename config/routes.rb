@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
   
   devise_for :users, controllers: { registrations: "registrations" }
-  resources :users, only: [:index, :show]
+  resources :users do 
+    resources :friend_requests, only: [:create, :destroy, :index]
+  end
   resources :posts
-  resources :friend_requests, only: [:create, :destroy, :index]
 end 
