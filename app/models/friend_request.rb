@@ -7,4 +7,8 @@ class FriendRequest < ApplicationRecord
     FriendRequest.where(sender_id: sender_id, receiver_id: receiver_id).destroy_all
     FriendRequest.where(sender_id: receiver_id, receiver_id: sender_id).destroy_all
   end
+
+  def self.from_friend(friend)
+    User.find(friend).id
+  end
 end
