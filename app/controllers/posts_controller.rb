@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = current_user.posts
+    @post = Post.new
+    @posts = Post.all
   end
 
   def new
@@ -10,6 +11,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new post_params
+    @post.user = current_user
+    if @post.save
+      redirect_to posts_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -24,5 +32,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
+    params.require(:post).permit(:body)
   end
 end
