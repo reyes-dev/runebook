@@ -6,8 +6,6 @@
   <%= post.submit "Create" %>
 <% end %>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= post.body %></li>
-  <% end %>
-</ul>
+<% @posts.each do |post| %>
+  <%= post %>
+<% end %>
