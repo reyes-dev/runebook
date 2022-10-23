@@ -7,5 +7,9 @@
 <% end %>
 
 <% @posts.each do |post| %>
-  <%= post %>
+  <%= post.body %>
+  <%= form_with model: [post, @comment] do |form| %>
+    <%= form.text_field :body %>
+    <%= form.submit 'Comment' %>
+  <% end %>
 <% end %>
