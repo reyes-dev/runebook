@@ -29,4 +29,8 @@ class User < ApplicationRecord
   def friends?(current_user)
     friendships.where(friend_id: current_user.id).any? || friendships.where(user_id: current_user.id).any?
   end
+
+  def friend_requested?(current_user)
+    FriendRequest.where(receiver_id: current_user.id).where(sender_id: self.id).any?
+  end
 end
