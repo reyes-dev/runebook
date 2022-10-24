@@ -7,8 +7,11 @@
 <% end %>
 
 <% @posts.each do |post| %>
+  <%= post.user.username + ":" %>
   <%= post.body %>
   <% post.comments.each do |comment| %>
+  <br />
+   <%= comment.user.username + ":" %>
     <%= comment.body %>
   <% end %>
   <%= form_with model: [post, post.comments.build] do |form| %>
