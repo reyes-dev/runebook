@@ -11,6 +11,7 @@ class User < ApplicationRecord
     has_many :friends,
       ->(user) { UsersQuery.friends(user_id: user.id, scope: true) },
       through: :friendships
+    has_many :likes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
