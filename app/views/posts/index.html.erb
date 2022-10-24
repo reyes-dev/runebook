@@ -8,6 +8,9 @@
 
 <% @posts.each do |post| %>
   <%= post.body %>
+  <% post.comments.each do |comment| %>
+    <%= comment.body %>
+  <% end %>
   <%= form_with model: [post, post.comments.build] do |form| %>
     <%= form.text_field :body %>
     <%= form.submit 'Comment' %>
