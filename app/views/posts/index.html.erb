@@ -9,6 +9,13 @@
 <% @posts.each do |post| %>
   <%= post.user.username + ":" %>
   <%= post.body %>
+  <% if post.likes.any? %>
+    <%= puts "nada" %>
+  <% else %>
+    <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post } do %>
+      <%= image_tag("https://cdn-icons-png.flaticon.com/512/126/126473.png", size: "16x20") %>
+    <% end %>
+  <% end %>
   <% post.comments.each do |comment| %>
   <br />
    <%= comment.user.username + ":" %>
