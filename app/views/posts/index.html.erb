@@ -10,7 +10,9 @@
   <%= post.user.username + ":" %>
   <%= post.body %>
   <% if post.likes.any? %>
-    <%= puts "nada" %>
+    <%= link_to like_path(id: post.likes.ids), data: { 'turbo-method' => :delete } do %>
+      <%= image_tag("https://cdn-icons-png.flaticon.com/512/739/739231.png", size: "16x20") %>
+    <% end %>
   <% else %>
     <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post } do %>
       <%= image_tag("https://cdn-icons-png.flaticon.com/512/126/126473.png", size: "16x20") %>
