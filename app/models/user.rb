@@ -25,4 +25,8 @@ class User < ApplicationRecord
   def login
     @login || self.username || self.email
   end
+
+  def friends?(current_user)
+    friendships.where(friend_id: current_user.id).any? || friendships.where(user_id: current_user.id).any?
+  end
 end
