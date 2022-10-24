@@ -16,4 +16,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable
+  attr_writer :login
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { in: 5..50 }
+
+
+  def login
+    @login || self.username || self.email
+  end
 end
