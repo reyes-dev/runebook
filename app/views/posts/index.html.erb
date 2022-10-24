@@ -9,8 +9,8 @@
 <% @posts.each do |post| %>
   <%= post.user.username + ":" %>
   <%= post.body %>
-  <% if post.likes.any? %>
-    <%= link_to like_path(id: post.likes.ids), data: { 'turbo-method' => :delete } do %>
+  <% if post.liked?(@current_user) %>
+    <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete } do %>
       <%= image_tag("https://cdn-icons-png.flaticon.com/512/739/739231.png", size: "16x20") %>
     <% end %>
   <% else %>

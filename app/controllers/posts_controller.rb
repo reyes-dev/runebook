@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.relevant_posts(current_user)
+    @current_user = current_user
   end
 
   def new
