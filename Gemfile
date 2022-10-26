@@ -53,7 +53,7 @@ gem 'devise'
 # Use OmniAuth gem [https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview]
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
-
+gem 'paperclip-cloudinary'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
