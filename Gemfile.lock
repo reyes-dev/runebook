@@ -282,6 +282,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  cloudinary
   debug
   devise
   importmap-rails
