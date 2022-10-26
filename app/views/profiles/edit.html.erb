@@ -1,0 +1,5 @@
+<%= form_with model: @profile do |f| %>
+    <%= f.file_field :image %>
+    <%= f.text_field :information %>
+    <%= f.submit "Update Profile" %>
+<% end %>
