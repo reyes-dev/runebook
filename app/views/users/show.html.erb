@@ -1,0 +1,7 @@
+<% if @user.profile.image.attached? %>
+    <%= cl_image_tag @user.profile.image.key, :width=>150, :crop=>"fill" %>
+<% end %>
+<%= @user.profile.information %>
+<% @posts.each do |post| %>
+    <%= post.body %>
+<% end %>
