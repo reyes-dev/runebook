@@ -15,6 +15,7 @@
     <%= link_to "users", users_path if current_user %>
     <%= link_to "posts", posts_path if current_user %>
     <%= link_to "friend requests", user_friend_requests_path(:user_id => current_user.id) if current_user %>
+    <%= link_to "my profile", user_path(:id => current_user.id) if current_user %>
     <%= link_to "edit profile", edit_profile_path(:id => current_user.profile.id) if current_user %>
 
     <p class="notice"><%= notice %></p>
