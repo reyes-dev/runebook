@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :create_profile
+  after_create :attach_default_avatar
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -40,5 +41,12 @@ class User < ApplicationRecord
 
   def create_profile
     Profile.create(user_id: self.id)
+  end
+  
+  def attach_default_avatar
+      url = URI.parse("https://res.cloudinary.com/db0puxwjb/image/upload/v1666805770/placeholder-icon_vcawzm.png")
+      filename = File.basename(url.path)
+      file = URI.open(url)
+      self.profile.image.attach(io: file, filename: filename)
   end
 end
