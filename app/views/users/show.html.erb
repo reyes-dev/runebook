@@ -1,5 +1,7 @@
 <% if @user.profile.image.attached? %>
-    <%= cl_image_tag @user.profile.image.key, :width=>150, :crop=>"fill" %>
+    <%= cl_image_tag @user.profile.image.key, :width=>250, :crop=>"fill" %>
+<% else %>
+    <%= cl_image_tag "https://res.cloudinary.com/db0puxwjb/image/upload/v1666785728/placeholder-icon_czlxxi.png", :width=>250, :crop=>"fill" %>
 <% end %>
 <%= @user.profile.information %>
 <% @posts.each do |post| %>
