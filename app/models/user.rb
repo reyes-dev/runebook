@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_create :create_profile
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -33,5 +34,11 @@ class User < ApplicationRecord
 
   def friend_requested?(current_user)
     FriendRequest.where(receiver_id: current_user.id).where(sender_id: self.id).any?
+  end
+
+  private
+
+  def create_profile
+    Profile.create(user_id: self.id)
   end
 end
