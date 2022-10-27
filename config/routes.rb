@@ -9,13 +9,16 @@ Rails.application.routes.draw do
     end
   end
   
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  
   resources :users do 
     resources :friend_requests, only: [:create, :destroy, :index]
   end
+  
   resources :posts do
     resources :comments
   end
+  
   resources :friendships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :profiles, only: [:edit, :update]
