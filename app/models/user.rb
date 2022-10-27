@@ -24,7 +24,6 @@ class User < ApplicationRecord
   attr_writer :login
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { in: 5..50 }
 
-
   def login
     @login || self.username || self.email
   end
@@ -35,6 +34,18 @@ class User < ApplicationRecord
 
   def friend_requested?(current_user)
     FriendRequest.where(receiver_id: current_user.id).where(sender_id: self.id).any?
+  end
+
+  def self.from_omniauth(auth)
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.username = auth.info.name   # assuming the user model has a name
+      user.profile.image = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails, 
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
   end
 
   private
