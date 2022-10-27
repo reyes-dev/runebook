@@ -10,6 +10,7 @@
 <% @posts.each do |post| %>
   <%= post.user.username + ":" %>
   <%= post.body %>
+  <%= cl_image_tag post.image.key, :width=>250, :crop=>"fill" if post.image.attached? %>
   <% if post.liked?(@current_user) %>
     <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete } do %>
       <%= image_tag("https://cdn-icons-png.flaticon.com/512/739/739231.png", size: "16x20") %>
