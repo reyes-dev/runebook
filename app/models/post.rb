@@ -2,7 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, dependent: :destroy
-  validates :body, presence: true
+  has_one_attached :image, dependent: :destroy
+  validate :has_text_or_image
   validates_length_of :body, :maximum => 280
   
   def self.relevant_posts(current_user) 
@@ -16,5 +17,11 @@ class Post < ApplicationRecord
 
   def user_like(current_user)
     likes.where(user: current_user).first.id
+  end
+
+  def has_text_or_image
+    unless [body, image].any?{ |val| val.present? }
+      errors.add :base, 'You need to enter some text or a attach an image!'
+    end
   end
 end
