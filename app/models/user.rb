@@ -3,6 +3,7 @@ require 'open-uri'
 class User < ApplicationRecord
   after_create :create_profile
   after_create :attach_default_avatar
+  after_create :send_welcome_email
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -68,5 +69,9 @@ class User < ApplicationRecord
       filename = File.basename(url.path)
       file = URI.open(url)
       self.profile.image.attach(io: file, filename: filename)
+  end
+
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver_now
   end
 end
