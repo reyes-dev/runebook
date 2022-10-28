@@ -55,6 +55,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'paperclip-cloudinary'
 gem 'cloudinary'
+gem "figaro"
 gem "letter_opener", group: :development
 
 group :development, :test do
