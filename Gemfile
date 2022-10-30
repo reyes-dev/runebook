@@ -57,7 +57,6 @@ gem 'paperclip-cloudinary'
 gem 'cloudinary'
 gem "figaro"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
-gem "letter_opener", group: :development
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -65,14 +64,9 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'web-console'
+  gem 'bullet'
+  gem 'letter_opener'
 end
 
 group :test do
