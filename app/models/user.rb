@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :received_friend_requests, foreign_key: "receiver_id", class_name: "FriendRequest"
   has_many :sent_friend_requests, foreign_key: "sender_id", class_name: "FriendRequest"
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :friendships,
     ->(user) { FriendshipsQuery.both_ways(user_id: user.id) },
     inverse_of: :user,
