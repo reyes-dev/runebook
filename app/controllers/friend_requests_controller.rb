@@ -19,7 +19,7 @@ class FriendRequestsController < ApplicationController
     @friend_request.destroy
     @placeholder_friend_request.destroy
 
-    redirect_to user_friend_requests_path
+    redirect_to request.referrer
   end
 
   private 
