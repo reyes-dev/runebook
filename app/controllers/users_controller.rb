@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.order("RANDOM()")
+    @users = User.all.includes(:profile).includes(:profile => [image_attachment: :blob]).order("RANDOM()")
     @current_user = current_user
   end
 
