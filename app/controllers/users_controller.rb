@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.all.order("RANDOM()")
     @current_user = current_user
   end
 
