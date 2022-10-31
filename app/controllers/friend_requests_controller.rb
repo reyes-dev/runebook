@@ -13,8 +13,8 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
-    @friend_request = FriendRequest.find(params[:id])
-    @placeholder_friend_request = FriendRequest.find(FriendRequest.where(receiver_id: @friend_request.sender_id).first.id)
+    @friend_request = FriendRequest.find_by(sender_id: params[:user_id], receiver_id: params[:id])
+    @placeholder_friend_request = FriendRequest.find_by(receiver_id: params[:user_id], sender_id: params[:id])
 
     @friend_request.destroy
     @placeholder_friend_request.destroy
