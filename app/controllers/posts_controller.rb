@@ -5,12 +5,6 @@ class PostsController < ApplicationController
     @current_user = current_user
   end
 
-  def new
-  end
-
-  def show
-  end
-
   def create
     @post = Post.new post_params
     @posts = Post.relevant_posts(current_user)
@@ -22,13 +16,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    redirect_to request.referrer
   end
 
   private
