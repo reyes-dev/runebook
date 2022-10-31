@@ -32,11 +32,11 @@ class User < ApplicationRecord
   end
 
   def friends?(current_user)
-    friendships.where(friend_id: current_user.id).any? || friendships.where(user_id: current_user.id).any?
+    friends.include?(current_user)
   end
 
   def friend_requested?(current_user)
-    FriendRequest.where(receiver_id: current_user.id).where(sender_id: self.id).any?
+    received_friend_requests.exists?(sender_id: current_user.id)
   end
 
   def self.from_omniauth(auth)
