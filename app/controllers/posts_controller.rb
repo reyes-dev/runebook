@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @post = Post.new
-    @posts = Post.relevant_posts(current_user)
+    @posts = Post.relevant_posts(current_user).includes(:comments)
     @current_user = current_user
   end
 
