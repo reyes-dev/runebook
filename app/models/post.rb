@@ -11,12 +11,10 @@ class Post < ApplicationRecord
   end
 
   def liked?(current_user)
-    # self.likes.any? && self.likes.first.user == current_user
     self.likes.exists?(user_id: current_user.id)
   end
 
   def user_like(current_user)
-    # likes.where(user: current_user).first.id
     likes.find_by(user: current_user)
   end
 
