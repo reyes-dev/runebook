@@ -15,21 +15,23 @@
     <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete } do %>
       <%= image_tag("https://cdn-icons-png.flaticon.com/512/739/739231.png", size: "16x20") %>
     <% end %>
+    <%= render "delete_post", :post => post, :current_user => @current_user %>
     <%= " x " + post.likes.count.to_s %>
   <% else %>
     <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post } do %>
       <%= image_tag("https://cdn-icons-png.flaticon.com/512/126/126473.png", size: "16x20") %>
     <% end %>
-    <%= link_to "Delete Post", post_path(post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if post.user == @current_user %>
+    <%= render "delete_post", :post => post, :current_user => @current_user %>
     <%= " x " + post.likes.count.to_s %>
   <% end %>
+
   <% post.comments.each do |comment| %>
   <br />
    <%= comment.user.username + ":" %>
     <%= comment.body %>
     <%= link_to "Delete Comment", post_comment_path(post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if comment.user == @current_user %>
-
   <% end %>
+  
   <%= form_with model: [post, post.comments.build] do |form| %>
     <%= form.text_field :body %>
     <%= form.submit 'Comment' %>

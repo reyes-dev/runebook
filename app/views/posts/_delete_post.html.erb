@@ -1,0 +1,1 @@
+<%= link_to "Delete Post", post_path(post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if post.user == @current_user %>
