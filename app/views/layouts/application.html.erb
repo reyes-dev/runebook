@@ -8,19 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
-    <%= button_to "logout", destroy_user_session_path, method: :delete  if current_user %>
-    <%= link_to "users", users_path if current_user %>
-    <%= link_to "posts", posts_path if current_user %>
-    <%= link_to "friend requests", user_friend_requests_path(:user_id => current_user.id) if current_user %>
-    <%= link_to "my profile", user_path(:id => current_user.id) if current_user %>
-    <%= link_to "edit profile", edit_profile_path(:id => current_user.profile.id) if current_user %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+  <body>    
+    <%= render "shared/header" if current_user %>
+    <%= yield %>    
+    <%= render "shared/footer" if current_user %>
   </body>
 </html>
