@@ -1,6 +1,13 @@
 class ProfilesController < ApplicationController
     def edit
         @profile = Profile.find(params[:id])
+        @current_user = current_user
+
+            if current_user.id != @profile.user_id
+                flash[:notice] = "You cannot edit another users profile."
+                redirect_to edit_profile_path(current_user.id)
+                return
+            end
     end
 
     def update
