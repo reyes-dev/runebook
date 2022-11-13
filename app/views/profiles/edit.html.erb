@@ -1,5 +1,8 @@
-<%= form_with model: @profile do |f| %>
-    <%= f.file_field :image %>
-    <%= f.text_area :information %>
-    <%= f.submit "Update Profile" %>
-<% end %>
+<div class="edit-profile-page">
+    <%= cl_image_tag @current_user.profile.image.key, :width=>300, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png" %>
+    <%= form_with model: @profile do |f| %>
+        <%= f.file_field :image %>
+        <%= f.text_area :information, size: "40x15" %>
+        <%= f.submit "Update Profile" %>
+    <% end %>
+</div>
