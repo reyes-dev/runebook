@@ -1,7 +1,8 @@
-<ul>
+<div class="friend-requests-page">
   <% @friend_requests.each do |fr| %>
-    <li><%= fr %></li>
+    <%= cl_image_tag fr.sender.profile.image.key, :width=>75, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png" %>
+    <%= link_to "#{fr.sender.username}", user_path(:id => fr.sender.id) %>
     <%= link_to "Accept", friendships_path( :friendship => { :user_id => current_user.id, :friend_id => FriendRequest.from_friend(fr.sender_id) }), data: { turbo_method: :post } %>
     <%= link_to "Reject", user_friend_request_path(:id => fr.id), data: { turbo_method: :delete } %>
   <% end %>
-</ul>
+</div>
