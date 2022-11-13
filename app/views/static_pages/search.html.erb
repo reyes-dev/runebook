@@ -1,0 +1,10 @@
+<h3>Search results for <i><%= @query %></i></h3>
+
+<div class="users-page">
+    <% @users.each do |user| %>
+    <div class="user">
+        <%= cl_image_tag user.profile.image.key, :width=>50, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png" %>
+        <%= link_to user.username, user %>    
+    </div>
+    <% end %>
+</div>
