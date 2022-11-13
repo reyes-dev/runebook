@@ -26,6 +26,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
   attr_writer :login
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { in: 5..50 }
+  scope :all_except, ->(user) { where.not(id: user) }
+
 
   def login
     @login || self.username || self.email
