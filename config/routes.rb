@@ -21,5 +21,9 @@ Rails.application.routes.draw do
   
   resources :friendships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
-  resources :profiles, only: [:edit, :update]
+  resource :profile, only: [:edit, :update]
+
+  get 'about', to: 'static_pages#about'
+  get 'search', to: 'static_pages#search'
+  get 'friends', to: 'static_pages#friends'
 end 
