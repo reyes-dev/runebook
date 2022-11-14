@@ -398,7 +398,7 @@ body {
     display: flex;
     gap: 16px;
 }
-.post-display-content img, .comments-display img {
+.post-display-content img, .comments-display img, .single-friend-container img, .my-friend img, .friend-requests-page img, .user img, .sidebar img {
     border-radius: 100%;
 }
 .post-display-content-text {
