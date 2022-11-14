@@ -2,7 +2,7 @@
   <% @users.each do |user| %>
   <div class="user">
         <%= cl_image_tag user.profile.image.key, :width=>75, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png" unless user == @current_user %>
-    <p><%= user.username unless user == @current_user %></p>
+    <p><%= link_to user.username, user_path(id: user.id) unless user == @current_user %></p>
     
     <% unless user.friends?(@current_user) || user == @current_user || user.friend_requested?(@current_user) %>
       <%= link_to "Send Friend Request", user_friend_requests_path(user, :friend_request => { :sender_id => current_user.id, :receiver_id => user.id, :received => true }), data: { turbo_method: "post" } %>
