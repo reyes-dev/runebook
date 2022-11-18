@@ -22,6 +22,10 @@ gem "figaro"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'webdrivers'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
@@ -32,9 +36,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end
 
 gem "hotwire-livereload", "~> 1.2", :group => :development
