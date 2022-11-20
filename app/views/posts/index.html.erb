@@ -87,7 +87,7 @@
           <button class="show-comment-button", data-action="visibility#toggleTargets">Add a comment</button>
           <div data-visibility-target="hideable" hidden>
             <%= form_with model: [post, post.comments.build] do |form| %>
-              <%= form.text_area :body, size: "60x4" %>
+              <%= form.text_area :body, size: "60x4", required: "required" %>
               <%= form.submit 'Create' %>
             <% end %>
           </div>
