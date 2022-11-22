@@ -20,6 +20,7 @@ gem 'paperclip-cloudinary'
 gem 'cloudinary'
 gem "figaro"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+gem "chromedriver-helper"
 
 group :development, :test do
   gem 'rspec-rails'
