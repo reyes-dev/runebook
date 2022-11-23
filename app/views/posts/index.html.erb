@@ -86,6 +86,11 @@
         <div class="comment-form", id="options", data-controller="visibility">
           <button class="show-comment-button", data-action="visibility#toggleTargets", 
           id="show-comment-button">Comment</button>
+          <% flash.each do |type, message| %>
+            <div class="invalid-comment-flash" >
+              <%= message %>
+            </div>
+          <% end %>
           <div data-visibility-target="hideable" hidden>
             <%= form_with model: [post, post.comments.build] do |form| %>
               <%= form.text_area :body, size: "60x4", required: "required", id: "comment_body" %>

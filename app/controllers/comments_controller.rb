@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
         @comment.user = current_user
         if @comment.save
             redirect_to posts_path
+        else
+            redirect_to posts_path, notice: "Invalid comment."
         end
     end
 
