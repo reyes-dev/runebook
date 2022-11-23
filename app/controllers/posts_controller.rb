@@ -12,7 +12,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
-      render :index, status: :unprocessable_entity
+      flash[:post_error] = "Invalid post"
+      redirect_to posts_path
     end
   end
 

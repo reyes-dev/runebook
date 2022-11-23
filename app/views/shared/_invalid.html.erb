@@ -1,5 +1,5 @@
-<% flash.each do |type, message| %>
-    <div class="invalid-flash" >
-        <%= message %>
-    </div>
+<% if flash[:comment_error] %>
+    <div class="invalid-flash"><%= flash[:comment_error].split(' ')[0...-1].join(' ') %></div>
+<% elsif flash[:post_error] %>
+    <div class="invalid-flash"><%= flash[:post_error] %></div>
 <% end %>

@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to posts_path
         else
-            redirect_to posts_path, notice: "Invalid comment."
+            flash[:comment_error] = "Invalid comment #{@post.id}"
+            redirect_to posts_path
         end
     end
 

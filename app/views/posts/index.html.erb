@@ -27,6 +27,7 @@
         </label>
         <%= post.submit "Submit Post" %>
       </div>
+                <%= render "shared/invalid" %>
     <% end %>
   </div>
 
@@ -86,11 +87,13 @@
         <div class="comment-form", id="options", data-controller="visibility">
           <button class="show-comment-button", data-action="visibility#toggleTargets", 
           id="show-comment-button">Comment</button>
-          <%= render "shared/invalid" %>
+          <% if flash[:comment_error] %>
+            <%= render "shared/invalid" if flash[:comment_error].split.last.to_i == post.id %>
+          <% end %>
           <div data-visibility-target="hideable" hidden>
             <%= form_with model: [post, post.comments.build] do |form| %>
               <%= form.text_area :body, size: "60x4", required: "required", id: "comment_body" %>
-              <%= form.submit 'Post Comment' %>
+              <%= form.submit 'Post Comment' %> 
             <% end %>
           </div>
         </div>
