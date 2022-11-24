@@ -21,7 +21,7 @@ RSpec.describe 'Comment', type: :feature, :js => true do
         click_button 'Comment'
         fill_in 'comment_body', with: ' '
         click_on 'Post Comment'
-        sleep 3.seconds
-        expect(page).to have_content('Invalid comment.')
+        # sleep 3.seconds
+        expect(page).to have_content('Invalid comment')
     end
 end
