@@ -51,12 +51,12 @@
           <%= cl_image_tag post.image.key, :width=>250, :crop=>"fill" if post.image.attached? %>
           
             <% if post.liked?(@current_user) %>
-              <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete } do %>
+              <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete }, id: 'unlike-link' do %>
                 <%= image_tag "like", class: "like" %>
               <% end %>
               <%= " x " + post.likes.count.to_s %>
             <% else %>
-              <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post } do %>
+              <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post }, id: 'like-link' do %>
                 <%= image_tag "unlike", class: "unlike" %>
               <% end %>
               <%= " x " + post.likes.count.to_s %>
