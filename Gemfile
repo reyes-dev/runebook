@@ -28,6 +28,7 @@ group :development, :test do
   gem 'capybara'
   gem 'webdrivers'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'guard-rspec'
 end
 
 group :development do
