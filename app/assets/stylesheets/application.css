@@ -85,22 +85,35 @@ body {
     flex-direction: column;
     gap: 16px;
 }
+.my-friends-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+}
 .my-friends-page {
+    display: grid;
+    grid-template-columns: .3fr 1fr;
+    border-radius: 8px;
+    padding: 32px;
+    gap: 16px;
+    width: 85%;
+
+}
+.my-friends {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--snowstorm3);
-    border-radius: 8px;
-    padding: 32px;
-}
-.my-friends {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 16px;
-    padding: 32px;
+    grid-template-columns: 1fr 1fr;
     background-color: var(--snowstorm3);
     border-radius: 8px;
+    padding: 32px;
+    width: fit-content;
+}
+.my-friends h2 {
+    align-self: center;
 }
 .my-friends-page h1 {
     font-size: 2em;
@@ -110,6 +123,7 @@ body {
 .my-friend {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 }
 .my-friend a:hover {
@@ -126,8 +140,18 @@ body {
 }
 .edit-profile-page {
     display: flex;
-    border: 1px solid black;
-    padding: 16px;
+    justify-content: center;
+    gap: 16px;
+    width: 85%;
+}
+.edit-profile-display {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    background-color: var(--snowstorm3);
+    padding: 1.5em;
+    border-radius: 0.4em;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
 }
 .edit-profile-page textarea {
     outline: none;
@@ -152,15 +176,21 @@ body {
     background-color: var(--snowstorm3);
 }
 .user-profile-page {
+    display: grid;
+    grid-template-columns: .3fr 1fr;
+    gap: 16px;
+    width: 85%;
+}
+.user-profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    width: 40%;
-    padding: 16px;
     background-color: var(--snowstorm3);
-    border-radius: 1em;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+    padding: 1.5em;
+    border-radius: 0.4em;
 }
 .user-profile-page p, .user-profile-post p {
     font-weight: 900;
@@ -180,28 +210,63 @@ body {
     border-radius: 8px;
     padding: 8px;
 }
+.friend-requests-page-container {
+    display: flex;
+    gap: 16px;
+    width: 85%;
+}
 .friend-requests-page {
-    display: grid;
-    grid-template-columns: .25fr 1fr .5fr .5fr;
-    border: 3px solid var(--snowstorm2);
+    display: flex;
+    flex-direction: column;
     border-radius: 16px;
     padding: 8px;
-    width: 40%;
+    width: fit-content;
+    height: fit-content;
     background-color: var(--snowstorm3);
     gap: 16px;
-    align-items: center;
+    padding: 16px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.friend-requests-page h2 {
+    align-self: center;
 }
 .friend-requests-page a:hover {
     color: var(--polarnight4)
 }
-.users-page {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+.friend-request {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+}
+.side-display {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.users-display-container {
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--snowstorm2);
     border-radius: 16px;
     padding: 8px;
-    width: 75%;
     background-color: var(--snowstorm3);
+}
+.users-display-container h2 {
+    font-size: 2.2em;
+    color: var(--polarnight1);
+    align-self: center;
+}
+.users-page {
+    display: grid;
+    grid-template-columns: .3fr 1fr;
+    gap: 16px;
+    width: 85%;
+}
+.users-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
 }
 .user {
     display: flex;
@@ -214,6 +279,9 @@ body {
 }
 .user p {
     font-weight: 900;
+}
+.user a {
+    text-align: center;
 }
 .user a:hover {
     color: var(--polarnight4);

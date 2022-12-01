@@ -1,15 +1,20 @@
-<h1 style="font-size: 1em;">Profile Page</h1>
 <div class="user-profile-page">
-    <p><%= @current_user.username %></p>
-    <%= cl_image_tag @current_user.profile.image.key, :width=>250, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png" %>
-    <p>Profile Information</p>
-    <%= @current_user.profile.information %>
-    <p>User's Posts</p>
-    <div class="user-profile-posts">
-        <% @posts.each do |post| %>
-            <div class="user-profile-post">
-                <%= post.body %>    
-            </div>
-        <% end %>    
+    <div class="side-display">
+        <%= render "shared/sidebar" %>
+    </div>
+    
+    <div class="user-profile">
+        <p><%= @current_user.username %></p>
+        <%= cl_image_tag @current_user.profile.image.key, :width=>250, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png" %>
+        <p>Profile Information</p>
+        <%= @current_user.profile.information %>
+        <p>User's Posts</p>
+        <div class="user-profile-posts">
+            <% @posts.each do |post| %>
+                <div class="user-profile-post">
+                    <%= post.body %>    
+                </div>
+            <% end %>    
+        </div>
     </div>
 </div>

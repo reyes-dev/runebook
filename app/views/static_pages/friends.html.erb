@@ -1,12 +1,17 @@
-<div class="my-friends-page">
-    <h1>My Friends</h1>
-    
-    <div class="my-friends">
-        <% @friends.each do |friend| %>
-            <div class="my-friend">
-                <%= cl_image_tag friend.profile.image.key, :width=>60, :height=>60, :crop=>"fill", :radius=>"max", :default_image => "placeholder-icon_vcawzm.png" %>
-                <%= link_to friend.username, user_path(id: friend.id) %>    
-            </div>
-        <% end %>
+<div class="my-friends-page-container">
+    <div class="my-friends-page">
+        <div class="side-display">
+            <%= render "shared/sidebar" %>
+        </div>
+
+        <div class="my-friends">
+        <h2>All Friends</h2>         
+            <% @friends.each do |friend| %>
+                <div class="my-friend">
+                    <%= cl_image_tag friend.profile.image.key, :width=>60, :height=>60, :crop=>"fill", :radius=>"max", :default_image => "placeholder-icon_vcawzm.png" %>
+                    <%= link_to friend.username, user_path(id: friend.id) %>    
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
