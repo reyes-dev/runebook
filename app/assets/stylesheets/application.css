@@ -61,6 +61,20 @@ body {
     width: 100%;
     border-radius: 4px;  
 }
+.invalid-login {
+    color: #6F1D1B;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    text-align: center;
+    font-size: 18px;
+    animation: fadeOut 2s forwards;
+    animation-delay: 1s;
+}
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
 .invalid-flash {
     display: inline-block;
     padding-left: 8px;

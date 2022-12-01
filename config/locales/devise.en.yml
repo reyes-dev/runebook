@@ -12,7 +12,7 @@ en:
       invalid: ""
       locked: ""
       last_attempt: ""
-      not_found_in_database: ""
+      not_found_in_database: <div class="invalid-login"> There is no account with that email. </div>
       timeout: ""
       unauthenticated: ""
       unconfirmed: ""
