@@ -247,9 +247,10 @@ body {
 .users-display-container {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     border: 1px solid var(--snowstorm2);
     border-radius: 16px;
-    padding: 8px;
+    padding: 1rem .5rem .5rem .5rem;
     background-color: var(--snowstorm3);
 }
 .users-display-container h2 {
@@ -265,23 +266,34 @@ body {
 }
 .users-display {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 .user {
+    display: grid;
+    grid-template-columns: fit-content(100%) 1fr;
+    gap: 2rem;
+    border-radius: 16px;
+    padding: 1rem;
+    border-bottom: 4px solid var(--snowstorm2);
+    justify-self: center;
+}
+.user-links {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    padding: 8px;
-    background: var(--snowstorm2);
+    gap: 2rem;
+    grid-column-start: 2;
 }
 .user p {
     font-weight: 900;
+    font-size: 1.5rem;
 }
 .user a {
-    text-align: center;
+    width: fit-content;
+    border-left: 2.5px solid var(--snowstorm2);
+    border-right: 2.5px solid var(--snowstorm2);
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .user a:hover {
     color: var(--polarnight4);
