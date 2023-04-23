@@ -1,7 +1,7 @@
 require 'faker'
 require 'open-uri'
 
-50.times do |i|
+5.times do |i|
     user = User.create!(email: Faker::Internet.email, username: Faker::Name.male_first_name + Faker::Name.last_name, password: Faker::Internet.password(min_length: 10, max_length: 16))
 
     url = URI.parse("https://xsgames.co/randomusers/assets/avatars/male/#{i}.jpg")
@@ -11,7 +11,7 @@ require 'open-uri'
     user.profile.update(information: Faker::Lorem.sentence(word_count: 10))
 end
 
-50.times do |i|
+5.times do |i|
     user = User.create!(email: Faker::Internet.email, username: Faker::Name.female_first_name + Faker::Name.last_name, password: Faker::Internet.password(min_length: 10, max_length: 16))
 
     url = URI.parse("https://xsgames.co/randomusers/assets/avatars/female/#{i}.jpg")
@@ -37,8 +37,8 @@ end
 3.times do |i|
     3.times do |x|
         user_id = "10#{i}".to_i
-        FriendRequest.create(sender_id: x + 10, receiver_id: user_id, received: true)
-        FriendRequest.create(sender_id: user_id, receiver_id: x + 10, received: false)
+        FriendRequest.create(sender_id: x + 1, receiver_id: user_id, received: true)
+        FriendRequest.create(sender_id: user_id, receiver_id: x + 1, received: false)
     end
 end
 
