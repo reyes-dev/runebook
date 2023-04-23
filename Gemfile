@@ -20,7 +20,7 @@ gem 'paperclip-cloudinary'
 gem 'cloudinary'
 gem "figaro"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
-gem "chromedriver-helper"
+  gem 'webdrivers'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -39,6 +39,7 @@ end
 
 group :test do
   gem "selenium-webdriver"
+  gem 'webdrivers'
 end
 
 gem "hotwire-livereload", "~> 1.2", :group => :development
