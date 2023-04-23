@@ -29,14 +29,14 @@ end
 
 5.times do |i|
     5.times do |x|
-        user_id = "10#{i}".to_i
+        user_id = "1#{i}".to_i
         Friendship.create(user_id: user_id, friend_id: x)
     end
 end
 
-3.times do |i|
+5.times do |i|
     3.times do |x|
-        user_id = "10#{i}".to_i
+        user_id = "1#{i}".to_i
         FriendRequest.create(sender_id: x + 1, receiver_id: user_id, received: true)
         FriendRequest.create(sender_id: user_id, receiver_id: x + 1, received: false)
     end
