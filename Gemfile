@@ -42,3 +42,5 @@ group :test do
 end
 
 gem "hotwire-livereload", "~> 1.2", :group => :development
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
