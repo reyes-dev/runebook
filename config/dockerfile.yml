@@ -2,7 +2,9 @@
 
 ---
 options:
+  bin-cd: true
   label:
     fly_launch_runtime: rails
   postgresql: true
   redis: true
+  swap: 512M

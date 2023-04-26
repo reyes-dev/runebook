@@ -3,17 +3,17 @@
     <p><%= @current_user.username %></p >
 
     <div class="sidebar-links">
-      <%= image_tag "horn" %>
+      <%= image_tag "horn.svg" %>
       <%= link_to "Posts", posts_path if current_user %>
-      <%= image_tag "friends" %>
+      <%= image_tag "friends.svg" %>
       <%= link_to "Users", users_path if current_user %>
-      <%= image_tag "my-friends" %>
+      <%= image_tag "my-friends.svg" %>
       <%= link_to "My Friends", friends_path %>
-      <%= image_tag "friend-requests" %>
+      <%= image_tag "friend-requests.svg" %>
       <%= link_to "Friend Requests", user_friend_requests_path(:user_id => current_user.id) if current_user %>
-      <%= image_tag "my-profile" %>
+      <%= image_tag "my-profile.svg" %>
       <%= link_to "My Profile", user_path(:id => current_user.id) if current_user %>
-      <%= image_tag "edit-profile" %>
+      <%= image_tag "edit-profile.svg" %>
       <%= link_to "Edit Profile", edit_profile_path(:id => current_user.profile.id) if current_user %>    
     </div>
   </div>

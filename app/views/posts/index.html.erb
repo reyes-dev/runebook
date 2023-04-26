@@ -14,7 +14,7 @@
       <div class="image-upload">
         <%= post.file_field :image, direct_upload: true, id: "image-input", class: "file-input" %>
         <label for="image-input">
-          <%= image_tag "scroll", class: "scroll" %>
+          <%= image_tag "scroll.svg", class: "scroll" %>
         </label>
         <%= post.submit "Submit Post" %>
       </div>
@@ -43,12 +43,12 @@
           
             <% if post.liked?(@current_user) %>
               <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete }, id: 'unlike-link' do %>
-                <%= image_tag "like", class: "like" %>
+                <%= image_tag "like.svg", class: "like" %>
               <% end %>
               <%= " x " + post.likes.count.to_s %>
             <% else %>
               <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post }, id: 'like-link' do %>
-                <%= image_tag "unlike", class: "unlike" %>
+                <%= image_tag "unlike.svg", class: "unlike" %>
               <% end %>
               <%= " x " + post.likes.count.to_s %>
             <% end %>

@@ -1,5 +1,5 @@
       <div class="display-title">
-        <%= image_tag "viking-ship", class: "viking-ship" %>
+        <%= image_tag "viking-ship.svg", class: "viking-ship" %>
         <h1 class="site-title">Runebook</h1>
         <div class="display-title-links">
           <%= link_to posts_path, :class => "display-title-link" do %>
@@ -11,7 +11,7 @@
             <%= form_with(url: search_path, method: :get, local: true) do |f| %>
               <%= f.text_field :query, placeholder: "Search Friends" %>
               <%= button_tag type: 'submit', class: 'search-button' do %>
-                <%= image_tag "shield", class: "shield" %>
+                <%= image_tag "shield.svg", class: "shield" %>
               <% end %>
             <% end %>
           <%= link_to edit_user_registration_path, :class => "display-title-link" do %>

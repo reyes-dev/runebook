@@ -1,0 +1,8 @@
+{
+  "name": "odin-facebook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:reyes-dev/odin-facebook.git",
+  "author": "reyesdev <102765102+reyes-dev@users.noreply.github.com>",
+  "license": "MIT"
+}
