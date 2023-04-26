@@ -4,11 +4,11 @@ class CommentsController < ApplicationController
         @comment = @post.comments.build comment_params
         @comment.user = current_user
         if @comment.save
-            redirect_to posts_path
+            flash[:success] = "Comment created successfully!"
         else
             flash[:comment_error] = "Invalid comment #{@post.id}"
-            redirect_to posts_path
         end
+        redirect_back(fallback_location: posts_path)
     end
 
     def destroy

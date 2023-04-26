@@ -16,9 +16,10 @@
         <label for="image-input">
           <%= image_tag "scroll.svg", class: "scroll" %>
         </label>
+        <%= select(:post, :open, [['Friends', false], ['Public', true]], selected: @open_filter) %>
         <%= post.submit "Submit Post" %>
       </div>
-                <%= render "shared/invalid" %>
+      <%= render "shared/invalid" %>
     <% end %>
   </div>
 
@@ -29,6 +30,11 @@
     </div>
 
     <%= turbo_frame_tag :like do %>
+
+    <%= form_tag(posts_path, method: :get) do %>
+      <%= select_tag :open, options_for_select([['Friends Posts', false], ['Public Posts', true]], selected: @open_filter), onchange: 'this.form.submit()' %>
+    <% end %>
+
       <% @posts.each do |post| %>
       <div class="post-display-content">
         <div class="post-display-content-image">
@@ -41,8 +47,8 @@
           <%= post.body %>
           <%= cl_image_tag post.image.key, :width=>250, :crop=>"fill" if post.image.attached? %>
           
-            <% if post.liked?(@current_user) %>
-              <%= link_to like_path(id: post.user_like(@current_user)), data: { 'turbo-method' => :delete }, id: 'unlike-link' do %>
+            <% if post.liked?(current_user) %>
+              <%= link_to like_path(id: post.user_like(current_user)), data: { 'turbo-method' => :delete }, id: 'unlike-link' do %>
                 <%= image_tag "like.svg", class: "like" %>
               <% end %>
               <%= " x " + post.likes.count.to_s %>
@@ -52,7 +58,7 @@
               <% end %>
               <%= " x " + post.likes.count.to_s %>
             <% end %>
-          <%= render "delete_post", :post => post, :current_user => @current_user %>
+          <%= render "delete_post", :post => post, :current_user => current_user %>
         </div>
       </div>
 
@@ -68,7 +74,7 @@
                 <span class="username"><%= link_to "#{comment.user.username + ":"}",  user_path(id: comment.user.id) %></span>
                 <%= comment.body %>
                 <div class="post-delete-link">
-                  <%= link_to "Delete Comment", post_comment_path(post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if comment.user == @current_user %>            
+                  <%= link_to "Delete Comment", post_comment_path(post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if comment.user == current_user %>            
                 </div>
               </div>   
             </div>

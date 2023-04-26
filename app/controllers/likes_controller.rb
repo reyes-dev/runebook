@@ -3,9 +3,9 @@ class LikesController < ApplicationController
         @like = Like.new like_params
         @like.user = current_user
         if @like.save
-            redirect_to posts_path
+            redirect_to request.referer
         else
-            redirect_to posts_path, status: :unprocessable_entity
+            redirect_to request.referer, status: :unprocessable_entity
         end
     end
 
@@ -13,7 +13,7 @@ class LikesController < ApplicationController
         @like = Like.find(params[:id])
         @like.destroy
 
-        redirect_to posts_path
+        redirect_to request.referer
     end
 
     private

@@ -1,6 +1,6 @@
   <div class="sidebar">
-    <%= cl_image_tag @current_user.profile.image.key, :width=>190, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png", :radius => "max" %>
-    <p><%= @current_user.username %></p >
+    <%= cl_image_tag current_user.profile.image.key, :width=>190, :crop=>"fill", :default_image => "placeholder-icon_vcawzm.png", :radius => "max" %>
+    <p><%= current_user.username %></p >
 
     <div class="sidebar-links">
       <%= image_tag "horn.svg" %>

@@ -43,7 +43,7 @@ end
 end
 
 (1..5).each do |i|
-    Post.create(body: Faker::Lorem.sentence(word_count: 30), user_id: i)
+    Post.create(body: Faker::Lorem.sentence(word_count: 30), open: false, user_id: i)
     rand(1..4).times do
         Comment.create(body: Faker::Lorem.sentence(word_count: 10), post_id: Post.last.id, user_id: rand(1..5))
     end

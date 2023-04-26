@@ -6,8 +6,12 @@ class Post < ApplicationRecord
   validate :has_text_or_image
   validates_length_of :body, :maximum => 280
   
-  def self.relevant_posts(current_user) 
-    where(user_id: current_user.id).or(where(user_id: current_user.friends.ids)).order(created_at: :desc)
+  def self.relevant_friend_posts(current_user)
+    where(user_id: current_user.id).or(where(user_id: current_user.friends.ids)).and(where(open: false)).order(created_at: :desc)
+  end
+
+  def self.open_posts(current_user)
+    where(open: true).order(created_at: :desc).order(created_at: :desc)
   end
 
   def liked?(current_user)

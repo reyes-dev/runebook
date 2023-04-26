@@ -1,20 +1,25 @@
 class PostsController < ApplicationController
   def index
     @post = Post.new
-    @posts = Post.relevant_posts(current_user).includes(:comments)
-    @current_user = current_user
+    @open_filter = params[:open] || 'false'
+
+    case @open_filter
+    when 'true'
+      @posts = Post.open_posts(current_user).includes(:comments)
+    when 'false'
+      @posts = Post.where(open: false).includes(:comments).order(created_at: :desc)
+    end  
   end
 
   def create
     @post = Post.new post_params
-    @posts = Post.relevant_posts(current_user)
     @post.user = current_user
     if @post.save
-      redirect_to posts_path
+      flash[:success] = "Post created successfully!"
     else
       flash[:post_error] = "Invalid post"
-      redirect_to posts_path
     end
+    redirect_back(fallback_location: posts_path)
   end
 
   def destroy
@@ -27,6 +32,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :image)
+    params.require(:post).permit(:body, :image, :open)
   end
 end
