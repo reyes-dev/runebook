@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     when 'true'
       @posts = Post.open_posts(current_user).includes(:comments)
     when 'false'
-      @posts = Post.where(open: false).includes(:comments).order(created_at: :desc)
+      @posts = Post.relevant_friend_posts(current_user).includes(:comments)
     end  
   end
 
