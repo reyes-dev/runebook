@@ -1,14 +1,25 @@
-# Facebook clone
-This repo is for the [final Rails project](https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) of The Odin Project's curriculum. It is a Facebook-like website that emulates the core features of a social media platform -- users, profiles, "friending", posts, news feeds, and "liking". It implements sign-in with the real Facebook using OmniAuth and Devise. User data and posts are populated with the "Faker" gem. 
+<h1 align="center">
+    Runebook 
+</h1>
 
-# Demo
-TBA
+## What is Runebook?
+Runebook is my take on building a fullstack social media web application. It is a Ruby on Rails monolith taking full advantage of the frameworks capabilities to deliver on all desired features. The intended purpose of Runebook is to gain experience building a Rails app with a full suite of features that you might find on a social media website like Facebook or Instagram, where users can share text or images, add friends and persist their data in a database.
 
-# Live
-You can check it out on Heroku in the future.
+## Features
+- Create User Accounts
+- Custom profile images and descriptions
+- Add friends and view in friendlist
+- Timeline feed of recent posts
+- Create posts/comments with images
+- Like posts/comments
 
-# Project Details
-TBA
+## Technologies 
+- Ruby on Rails
+- Hotwire
+- Devise
+- RSpec
+- PostgreSQL
+- Faker
 
 # Local installation
 TBA
