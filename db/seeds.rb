@@ -1,6 +1,8 @@
 require 'faker'
 require 'open-uri'
 
+user = User.create!(email: 'guest@example.com', username: 'Guest', password: 'password')
+
 5.times do |i|
   user = User.create!(email: Faker::Internet.email, username: Faker::Name.male_first_name + Faker::Name.last_name,
                       password: Faker::Internet.password(min_length: 10, max_length: 16))
