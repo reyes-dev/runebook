@@ -16,7 +16,6 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'
 gem 'redis', '~> 4.0'
-gem 'selenium-webdriver'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
@@ -28,6 +27,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'guard-rspec'
   gem 'rspec-rails'
+  gem 'selenium-webdriver', '!= 4.9.1'
 end
 
 group :development do
