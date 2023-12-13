@@ -1,101 +1,39 @@
 <div class="posts-page">
-
   <div class="posts-page-column-1">
     <%= render "shared/sidebar" %>
     <%= render "shared/friends" %>
   </div>
 
-<div class="posts-page-column-2">
-  <div class="post-form">
-    <h1>New Post</h1>
-    <%= form_with model: @post do |post| %>
-      <% post.label :body %>
-      <%= post.text_area :body, size: "55x4", maxlength: 280, placeholder: "Announce your feats..." %>
-      <div class="image-upload">
-        <%= post.file_field :image, direct_upload: true, id: "image-input", class: "file-input" %>
-        <label for="image-input">
-          <%= image_tag "scroll.svg", class: "scroll" %>
-        </label>
-        <%= select(:post, :open, [['Friends', false], ['Public', true]], selected: @open_filter) %>
-        <%= post.submit "Submit Post" %>
-      </div>
-      <%= render "shared/invalid" %>
-    <% end %>
-  </div>
-
-  <div class="post-display">
-    <div class="post-display-headers">
-      <h1>Timeline</h1>
-      <h2>Latest posts</h2>  
+  <div class="posts-page-column-2">
+    <div class="post-form">
+      <%= render "post_form" %>
     </div>
 
-    <%= turbo_frame_tag :like do %>
-
-    <%= form_tag(posts_path, method: :get) do %>
-      <%= select_tag :open, options_for_select([['Friends Posts', false], ['Public Posts', true]], selected: @open_filter), onchange: 'this.form.submit()' %>
-    <% end %>
-
-      <% @posts.each do |post| %>
-      <div class="post-display-content">
-        <div class="post-display-content-image">
-          <%= cl_image_tag post.user.profile.image.key, :width=>40, :height=>40, :crop=>"fill", :radius=>"max", :default_image => "placeholder-icon_vcawzm.png" %>
-          <div class="line"></div>
-        </div>
-
-        <div class="post-display-content-text">
-          <span class="username"><%= link_to "#{post.user.username + ":"}",  user_path(id: post.user.id) %></span>
-          <%= post.body %>
-          <%= cl_image_tag post.image.key, :width=>250, :crop=>"fill" if post.image.attached? %>
-          
-            <% if post.liked?(current_user) %>
-              <%= link_to like_path(id: post.user_like(current_user)), data: { 'turbo-method' => :delete }, id: 'unlike-link' do %>
-                <%= image_tag "like.svg", class: "like" %>
-              <% end %>
-              <%= " x " + post.likes.count.to_s %>
-            <% else %>
-              <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post }, id: 'like-link' do %>
-                <%= image_tag "unlike.svg", class: "unlike" %>
-              <% end %>
-              <%= " x " + post.likes.count.to_s %>
-            <% end %>
-          <%= render "delete_post", :post => post, :current_user => current_user %>
-        </div>
+    <div class="post-display">
+      <div class="post-display-headers">
+        <h1>Timeline</h1>
+        <h2>Latest posts</h2>  
       </div>
 
-        <div class="comments-display">
-            <% post.comments.each do |comment| %>
-            <div class="comments-display-content">
-              <div class="comments-display-image">
-                <%= cl_image_tag comment.user.profile.image.key, :width=>40, :height=>40, :crop=>"fill", :radius=>"max", :default_image => "placeholder-icon_vcawzm.png" %>
-                <div class="line"></div>
-              </div>
+      <%= turbo_frame_tag :like do %>
+        <%= form_tag(posts_path, method: :get) do %>
+          <%= select_tag :open, options_for_select([['Friends Posts', false], ['Public Posts', true]], selected: @open_filter), onchange: 'this.form.submit()' %>
+        <% end %>
 
-              <div class="comments-display-text">
-                <span class="username"><%= link_to "#{comment.user.username + ":"}",  user_path(id: comment.user.id) %></span>
-                <%= comment.body %>
-                <div class="post-delete-link">
-                  <%= link_to "Delete Comment", post_comment_path(post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if comment.user == current_user %>            
-                </div>
-              </div>   
-            </div>
-          <% end %>    
-        </div>
-
-        <div class="comment-form", id="options", data-controller="visibility">
-          <button class="show-comment-button", data-action="visibility#toggleTargets", 
-          id="show-comment-button">Comment</button>
-          <% if flash[:comment_error] %>
-            <%= render "shared/invalid" if flash[:comment_error].split.last.to_i == post.id %>
-          <% end %>
-          <div data-visibility-target="hideable" hidden>
-            <%= form_with model: [post, post.comments.build] do |form| %>
-              <%= form.text_area :body, size: "60x4", required: "required", id: "comment_body" %>
-              <%= form.submit 'Post Comment' %> 
-            <% end %>
+        <% @posts.each do |post| %>
+          <div class="post-display-content">
+            <%= render partial: "show_post", locals: { post: } %>
           </div>
-        </div>
+
+          <div class="comments-display">
+            <%= render partial: "comments", locals: { post: } %>
+          </div>
+
+          <div class="comment-form", id="options", data-controller="visibility">
+            <%= render partial: "comment_form", locals: { post: } %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
 </div>

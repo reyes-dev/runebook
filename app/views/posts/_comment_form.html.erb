@@ -1,0 +1,13 @@
+<button class="show-comment-button", data-action="visibility#toggleTargets", 
+id="show-comment-button">Comment</button>
+
+<% if flash[:comment_error] %>
+  <%= render "shared/invalid" if flash[:comment_error].split.last.to_i == post.id %>
+<% end %>
+
+<div data-visibility-target="hideable" hidden>
+  <%= form_with model: [post, post.comments.build] do |form| %>
+    <%= form.text_area :body, size: "60x4", required: "required", id: "comment_body" %>
+    <%= form.submit 'Post Comment' %> 
+  <% end %>
+</div>

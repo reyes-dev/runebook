@@ -1,0 +1,18 @@
+<h1>New Post</h1>
+
+<%= form_with model: @post do |post| %>
+  <% post.label :body %>
+  <%= post.text_area :body, size: "55x4", maxlength: 280, placeholder: "Announce your feats..." %>
+
+  <div class="image-upload">
+    <%= post.file_field :image, direct_upload: true, id: "image-input", class: "file-input" %>
+    <label for="image-input">
+      <%= image_tag "scroll.svg", class: "scroll" %>
+    </label>
+
+    <%= select(:post, :open, [['Friends', false], ['Public', true]], selected: @open_filter) %>
+    <%= post.submit "Submit Post" %>
+  </div>
+
+  <%= render "shared/invalid" %>
+<% end %>

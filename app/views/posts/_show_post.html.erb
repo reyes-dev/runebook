@@ -1,0 +1,23 @@
+<div class="post-display-content-image">
+  <%= cl_image_tag post.user.profile.image.key, :width=>40, :height=>40, :crop=>"fill", :radius=>"max", :default_image => "placeholder-icon_vcawzm.png" %>
+  <div class="line"></div>
+</div>
+
+<div class="post-display-content-text">
+  <span class="username"><%= link_to "#{post.user.username + ":"}",  user_path(id: post.user.id) %></span>
+  <%= post.body %>
+  <%= cl_image_tag post.image.key, :width=>250, :crop=>"fill" if post.image.attached? %>
+  
+  <% if post.liked?(current_user) %>
+    <%= link_to like_path(id: post.user_like(current_user)), data: { 'turbo-method' => :delete }, id: 'unlike-link' do %>
+      <%= image_tag "like.svg", class: "like" %>
+    <% end %>
+    <%= " x " + post.likes.count.to_s %>
+    <% else %>
+      <%= link_to likes_path(:like => { likeable_id: post.id, likeable_type: 'Post' }), data: { 'turbo-method' => :post }, id: 'like-link' do %>
+      <%= image_tag "unlike.svg", class: "unlike" %>
+    <% end %>
+      <%= " x " + post.likes.count.to_s %>
+    <% end %>
+  <%= render "delete_post", :post => post, :current_user => current_user %>
+</div>

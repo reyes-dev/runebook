@@ -1,0 +1,16 @@
+<% post.comments.each do |comment| %>
+  <div class="comments-display-content">
+    <div class="comments-display-image">
+      <%= cl_image_tag comment.user.profile.image.key, :width=>40, :height=>40, :crop=>"fill", :radius=>"max", :default_image => "placeholder-icon_vcawzm.png" %>
+      <div class="line"></div>
+    </div>
+
+    <div class="comments-display-text">
+      <span class="username"><%= link_to "#{comment.user.username + ":"}",  user_path(id: comment.user.id) %></span>
+      <%= comment.body %>
+      <div class="post-delete-link">
+        <%= link_to "Delete Comment", post_comment_path(post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } if comment.user == current_user %>            
+      </div>
+    </div>   
+  </div>
+<% end %>    
