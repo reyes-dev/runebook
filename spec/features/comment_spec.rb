@@ -11,8 +11,6 @@ RSpec.describe 'Comment', type: :feature, js: true do
     click_button 'Comment'
     fill_in 'comment_body', with: 'comment text'
     click_on 'Post Comment'
-    visit posts_path
-    # sleep 3.seconds
     expect(page).to have_content('comment text')
   end
 
@@ -24,7 +22,6 @@ RSpec.describe 'Comment', type: :feature, js: true do
     click_button 'Comment'
     fill_in 'comment_body', with: ' '
     click_on 'Post Comment'
-    # sleep 3.seconds
     expect(page).to have_content('Invalid comment')
   end
 end
